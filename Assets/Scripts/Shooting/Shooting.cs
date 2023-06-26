@@ -1,58 +1,27 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Mechanics.Shooting
 {
-
-
     public class Shooting : MonoBehaviour
     {
-        [SerializeField] private Transform _gunBarrel; // Точка виходу кулі
-        [SerializeField] private float _shootDistance = 100f; // Максимальна відстань стрільби
-        [SerializeField] private LayerMask _shootableLayers; // Шари, по яких можна стріляти
-        [SerializeField] private Transform _aimTransform; // Трансформ прицілу
+        [SerializeField] private Transform _gunBarrel; 
+        [SerializeField] private float _shootDistance = 100f; 
+        [SerializeField] private LayerMask _shootableLayers; 
+        [SerializeField] private Transform _aimTransform; 
+        public Action<bool> isShoot;
 
-        private Camera _mainCamera;
-
-        private void Start()
-        {
-            _mainCamera = Camera.main;
-        }
-
-        private void Update()
-        {
-            Aim();
-
-            if (Input.GetButtonDown("Fire1")) // Перевірка натискання кнопки вогню (ліва кнопка миші або пробіл)
-            {
-                Shoot();
-            }
-        }
-
-        private void Aim()
-        {
-            // Отримання позиції миші у світових координатах
-            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, _shootDistance, _shootableLayers))
-            {
-                // Оновлення позиції прицілу
-                _aimTransform.position = hit.point;
-
-                // Напрямок стрільби в бік прицілу
-                Vector3 direction = hit.point - _gunBarrel.position;
-                _gunBarrel.rotation = Quaternion.LookRotation(direction);
-            }
-        }
-
-        private void Shoot()
+        public void Shoot()
         {
             Ray ray = new Ray(_gunBarrel.position, _gunBarrel.forward);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, _shootDistance, _shootableLayers))
             {
-                if (hit.collider.GetComponent<EnemyHealth>())
+                if (hit.collider.GetComponent<Health>())
                 {
-                    hit.collider.GetComponent<EnemyHealth>().TakeDamage(50f);
+                    hit.collider.GetComponent<IHealth>().TakeDamage(50f,gameObject,isShoot);
                 }
             }
             else

@@ -1,23 +1,21 @@
-using System;
 using Mechanics.Movements;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Units
 {
     public class PlayerController : Unit, IMovable
     {
-        private const float GRAVITY_FORCE = 9.81f;
         [SerializeField] private float jumpForce;
         [SerializeField] private float runSpeed = 8f;  
         
         private CharacterController _characterController;
         private float _verticalSpeed;
         private float _rotationX;
+        private float _gravityForce = Physics.gravity.y;
 
-        public void Initialize()
+        public void Initialize(CharacterController characterController)
         {
-            _characterController = gameObject.GetComponent<CharacterController>();
+            _characterController = characterController;
         }
         
         public void Move(Vector3 axis)
@@ -31,7 +29,7 @@ namespace Units
 
                 if (Input.GetButtonDown("Jump")) 
                 {
-                    _verticalSpeed = jumpForce; 
+                    Jump();
                 }
             }
 
@@ -44,25 +42,30 @@ namespace Units
                 Run(runSpeed, direction);
             }
         }
-        public void Rotate() 
-        {                                                                                                           
-            float mouseX = Input.GetAxis("Mouse X") * Sensitivity;                                                  
+        public void RotateWithMouse(float MouseX, float MouseY) 
+        {
+            float mouseX = MouseX * Sensitivity;                                                  
                                                                                                                 
             transform.Rotate(0f, mouseX, 0f);                                                                       
                                                                                                                 
-            _rotationX -= Input.GetAxis("Mouse Y") * Sensitivity;                                                   
+            _rotationX -= MouseY * Sensitivity;                                                   
             _rotationX = Mathf.Clamp(_rotationX, -2.5f, 2.5f);                                                      
                                                                                                                 
             transform.localRotation = Quaternion.Euler(_rotationX, transform.localRotation.eulerAngles.y, 0f);      
         }                                                                                                          
-        private void Run(float movementSpeed, Vector3 direction)
+        public void Run(float movementSpeed, Vector3 direction)
         {
             _characterController.Move(direction * (movementSpeed * Time.deltaTime));
+        }
+
+        public void Jump()
+        {
+            _verticalSpeed = jumpForce;
         }
         
         private void ApplyGravity()
         {
-            _verticalSpeed -= GRAVITY_FORCE * Time.deltaTime;
+            _verticalSpeed += _gravityForce * Time.deltaTime;
         }
     }
 }

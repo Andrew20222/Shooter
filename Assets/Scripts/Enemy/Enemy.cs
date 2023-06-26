@@ -1,3 +1,4 @@
+using System;
 using Units;
 using UnityEngine;
 
@@ -12,10 +13,12 @@ namespace Enemies
         [SerializeField] private float detectionRange = 10f;
         [SerializeField] private float speed = 3f;
 
-        private PlayerHealth _player;
+        private Health _player;
         private bool _isPlayerDetected;
 
-        public void Initialize(PlayerHealth player)
+        public Action<bool> isAttack;
+
+        public void Initialize(Health player)
         {
             _player = player;
         }
@@ -29,7 +32,7 @@ namespace Enemies
 
         private void DetectPlayer()
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, _player.gameObject.transform.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
             _isPlayerDetected = distanceToPlayer <= detectionRange;
         }
 
@@ -55,7 +58,7 @@ namespace Enemies
 
         private void Attack()
         {
-            _player.TakeDamage(attackDamage);
+            _player.TakeDamage(attackDamage, this.gameObject,isAttack);
         }
     }
 }

@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Guns;
 
 namespace Inventories
 {
     public class Inventory : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> guns = new List<GameObject>();
+        [SerializeField] private List<Gun> guns = new();
         private int currentItemIndex = 0;
 
         private void Start()
@@ -44,11 +45,11 @@ namespace Inventories
             {
                 if (i == index)
                 {
-                    guns[i].SetActive(true);
+                    guns[i].gameObject.SetActive(true);
                 }
                 else
                 {
-                    guns[i].SetActive(false);
+                    guns[i].gameObject.SetActive(false);
                 }
             }
         }

@@ -342,7 +342,6 @@ GameObject:
   - component: {fileID: 687554899310523744}
   - component: {fileID: 687554899310523745}
   - component: {fileID: 687554899310523746}
-  - component: {fileID: 1123643959}
   - component: {fileID: 1123643960}
   - component: {fileID: 6620441060012446196}
   m_Layer: 0
@@ -401,7 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Sensitivity: 2
-  _jumpForce: 7
+  jumpForce: 0
   runSpeed: 8
 --- !u!114 &687554899310523746
 MonoBehaviour:
@@ -421,20 +420,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   _aimTransform: {fileID: 0}
---- !u!114 &1123643959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687554899310523750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cc7f66310b2aea4fb8bd40faa19e98e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  losePanel: {fileID: 0}
 --- !u!114 &1123643960
 MonoBehaviour:
   m_ObjectHideFlags: 0
