@@ -8,6 +8,6 @@ namespace Mechanics.Movements
         void RotateWithMouse(float MouseX, float MouseY);
 
         void Jump();
-        void Run(float movementSpeed, Vector3 direction);
+        void Run();
     }
 }

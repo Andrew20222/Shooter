@@ -1,9 +1,9 @@
-using DefaultNamespace;
+using Mechanics.Aiming;
 using Mechanics.Movements;
 using Mechanics.Shooting;
 using UnityEngine;
 
-namespace Units
+namespace Inputs
 {
     public class InputProvider : MonoBehaviour
     {
@@ -18,27 +18,47 @@ namespace Units
         private IMovable _movable;
         private Vector3 _direction;
         private Shooting _shooting;
-        private Aiming _aiming;
-        public void Initialize(IMovable movable, Shooting shooting, Aiming aiming)
+        private Scope _scope;
+        public void Initialize(IMovable movable, Shooting shooting, Scope scope)
         {
             _movable = movable;
             _shooting = shooting;
-            _aiming = aiming;
+            _scope = scope;
         }
-        
-        private void Update()
+
+        private void SetDirectionMove()
         {
             _direction = new Vector3(Input.GetAxis(HORIZONTAL_AXIS_NAME), 0, Input.GetAxis(VERTICAL_AXIS_NAME));
             _movable.Move(_direction);
-            _movable.RotateWithMouse(Input.GetAxis(HORIZONTAL_MOUSE_INPUT),Input.GetAxis(VERTICAL_MOUSE_INPUT));
+        }
 
+        private void SetRotate()
+        {
+            _movable.RotateWithMouse(Input.GetAxis(HORIZONTAL_MOUSE_INPUT),Input.GetAxis(VERTICAL_MOUSE_INPUT));
+        }
+
+        private void Update()
+        {
+            SetDirectionMove();
+            SetRotate();
+            
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                _movable.Run();
+            }
+            
+            if (Input.GetButtonDown("Jump")) 
+            {
+                _movable.Jump();
+            }
+            
             if (Input.GetButtonDown(PRIMARY_FIRE_BUTTON))
             {
                 _shooting.Shoot();
             }
             else if (Input.GetButton(SECONDARY_FIRE_BUTTON))
             {
-                _aiming.Aim();
+                _scope.AimWithMouse();
             }
         }
     }

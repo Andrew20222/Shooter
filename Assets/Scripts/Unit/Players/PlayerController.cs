@@ -11,7 +11,8 @@ namespace Units
         private CharacterController _characterController;
         private float _verticalSpeed;
         private float _rotationX;
-        private float _gravityForce = Physics.gravity.y;
+        private Vector3 _direction;
+        private readonly float _gravityForce = Physics.gravity.y;
 
         public void Initialize(CharacterController characterController)
         {
@@ -20,27 +21,19 @@ namespace Units
         
         public void Move(Vector3 axis)
         {
-            var direction = Vector3.zero;
+            _direction = Vector3.zero;
 
             if (_characterController.isGrounded)
             {
-                direction += axis * Speed;
-                direction = transform.TransformDirection(direction);
-
-                if (Input.GetButtonDown("Jump")) 
-                {
-                    Jump();
-                }
+                _direction += axis * Speed;
+                _direction = transform.TransformDirection(_direction);
             }
 
             ApplyGravity(); 
 
-            _characterController.Move((direction + new Vector3(0, _verticalSpeed, 0)) * Time.deltaTime);
+            _characterController.Move((_direction + new Vector3(0, _verticalSpeed, 0)) * Time.deltaTime);
             
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                Run(runSpeed, direction);
-            }
+            
         }
         public void RotateWithMouse(float MouseX, float MouseY) 
         {
@@ -53,14 +46,17 @@ namespace Units
                                                                                                                 
             transform.localRotation = Quaternion.Euler(_rotationX, transform.localRotation.eulerAngles.y, 0f);      
         }                                                                                                          
-        public void Run(float movementSpeed, Vector3 direction)
+        public void Run()
         {
-            _characterController.Move(direction * (movementSpeed * Time.deltaTime));
+            _characterController.Move(_direction * (runSpeed * Time.deltaTime));
         }
 
         public void Jump()
         {
-            _verticalSpeed = jumpForce;
+            if (_characterController.isGrounded)
+            {
+                _verticalSpeed = jumpForce;    
+            }
         }
         
         private void ApplyGravity()

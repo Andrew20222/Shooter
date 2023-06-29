@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 695410754}
   - component: {fileID: 695410753}
   - component: {fileID: 695410752}
-  - component: {fileID: 695410751}
+  - component: {fileID: 6272503468295692585}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &695410751
+--- !u!114 &6272503468295692585
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 695410749}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e449d15cc9c9e4b97be25327f5d578, type: 3}
+  m_Script: {fileID: 11500000, guid: 446e292bf5842fb4bafc09e04c7d5542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1467479784
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 1467479789}
   - component: {fileID: 1467479788}
   - component: {fileID: 1467479787}
-  - component: {fileID: 1467479786}
+  - component: {fileID: 889404529415175857}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -208,7 +208,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1467479786
+--- !u!114 &889404529415175857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1467479784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e449d15cc9c9e4b97be25327f5d578, type: 3}
+  m_Script: {fileID: 11500000, guid: 446e292bf5842fb4bafc09e04c7d5542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &687554898285049802
@@ -232,14 +232,14 @@ GameObject:
   - component: {fileID: 687554898285049846}
   - component: {fileID: 687554898285049845}
   - component: {fileID: 687554898285049844}
-  - component: {fileID: 31387811}
+  - component: {fileID: 7702856705363950488}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &687554898285049803
 Transform:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &31387811
+--- !u!114 &7702856705363950488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 687554898285049802}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68e449d15cc9c9e4b97be25327f5d578, type: 3}
+  m_Script: {fileID: 11500000, guid: 446e292bf5842fb4bafc09e04c7d5542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &687554899310523750
@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 687554899310523746}
   - component: {fileID: 1123643960}
   - component: {fileID: 6620441060012446196}
+  - component: {fileID: 687554898254022486}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -400,7 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Sensitivity: 2
-  jumpForce: 0
+  jumpForce: 9
   runSpeed: 8
 --- !u!114 &687554899310523746
 MonoBehaviour:
@@ -419,7 +420,8 @@ MonoBehaviour:
   _shootableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  _aimTransform: {fileID: 0}
+  poolCount: 1
+  autoExpand: 0
 --- !u!114 &1123643960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,9 +435,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guns:
-  - {fileID: 687554898285049802}
-  - {fileID: 1467479784}
-  - {fileID: 695410749}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6620441060012446196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,6 +448,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e8c47d2a7674e4492c91bd922f80a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &687554898254022486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687554899310523750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a38b93b295ff7e40bf4f0b9f092b655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &687554899419118767
@@ -540,6 +554,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8969643359950968550}
+  - component: {fileID: 1057384183}
   m_Layer: 0
   m_Name: GunBarrel
   m_TagString: Untagged
@@ -555,7 +570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7663052806023588214}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.92, y: -0.04000002, z: 0}
+  m_LocalPosition: {x: 0.92, y: -0.04000002, z: 0.383}
   m_LocalScale: {x: 0.32825, y: 0.32825, z: 0.32825}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -565,3 +580,15 @@ Transform:
   m_Father: {fileID: 687554899310523751}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1057384183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7663052806023588214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e449d15cc9c9e4b97be25327f5d578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

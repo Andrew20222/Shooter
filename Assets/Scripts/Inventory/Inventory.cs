@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Guns;
 
 namespace Inventories
 {
     public class Inventory : MonoBehaviour
     {
-        [SerializeField] private List<Gun> guns = new();
+        [SerializeField] private List<Guns.Gun> guns = new();
         private int currentItemIndex = 0;
 
         private void Start()
@@ -30,7 +29,7 @@ namespace Inventories
             }
         }
 
-        public void SwitchToItem(int index)
+        private void SwitchToItem(int index)
         {
             if (index >= 0 && index < guns.Count)
             {

@@ -1,38 +1,40 @@
 using System;
-using DefaultNamespace;
+using Mechanics.Damage;
 using UnityEngine;
 
-public class Health : MonoBehaviour, IHealth
+namespace Mechanics.Healths
 {
-    public float MaxHealth { get; set; } = 100f;
-    private float _currentHealth;
-    public event Action<bool> isDead;
-
-    public void Initialize()
+    public class Health : MonoBehaviour, IHealth, IDamageable
     {
-        _currentHealth = MaxHealth;
-    }
+        public event Action Dead;
+        public float MaxHealth { get; set; } = 100f;
+        private float _currentHealth;
 
-    public void TakeDamage(float damage, object sender, Action<bool> callback)
-    {
-        _currentHealth -= damage;
-        CheckHealthNotZero(_currentHealth);
-        callback?.Invoke(true);
-        Debug.Log($"Damage with {sender.GetType().Name}");
-
-    }
-
-    private void CheckHealthNotZero(float health)
-    {
-        if (health < 0f)
+        public void Initialize()
         {
-            var objectLifecycleSystem = new ObjectLifecycleSystem();
-            Die(objectLifecycleSystem.Destroyed(gameObject));
+            _currentHealth = MaxHealth;
         }
-    }
 
-    public void Die(Action<bool> callback)
-    {
-        callback?.Invoke(true);
+        public void TakeDamage(float damage, object sender)
+        {
+            _currentHealth -= damage;
+            CheckDeath(_currentHealth);
+            Debug.Log($"Damage with {sender.GetType().Name}");
+
+        }
+        
+        private void CheckDeath(float health)
+        {
+            if (health < 0f)
+            {
+                Die();
+            }
+        }
+        
+        public void Die()
+        {
+            Destroy(gameObject);
+            Dead?.Invoke();
+        }
     }
 }
