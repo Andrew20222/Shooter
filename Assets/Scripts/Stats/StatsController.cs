@@ -23,7 +23,7 @@ namespace Stats
             _endGameView = endGameView;
             _endGameView.ShowPanelWin += UpdateCountWin;
             _endGameView.ShowPanelLose += UpdateCountLose;
-            _statsView.resultBtn.onClick.AddListener(ShowResult);
+            _statsView.ResultBtn.onClick.AddListener(ShowResult);
         }
 
         private void SetData()
@@ -47,16 +47,16 @@ namespace Stats
         }
         private void ShowResult()
         {
-            _statsView.countWin.text = $"CountWin : {_statsData.CountWin.ToString()} ";
-            _statsView.countLose.text =$"CountLose : {_statsData.CountLose.ToString()}";
-            _statsView.resultPanel.SetActive(true);
+            _statsView.CountWin.text = $"CountWin : {_statsData.CountWin.ToString()} ";
+            _statsView.CountLose.text =$"CountLose : {_statsData.CountLose.ToString()}";
+            _statsView.ResultPanel.SetActive(true);
         }
 
         private void OnDisable()
         {
             _endGameView.ShowPanelWin -= UpdateCountWin;
             _endGameView.ShowPanelLose -= UpdateCountLose;
-            _statsView.resultBtn.onClick.RemoveListener(ShowResult);
+            _statsView.ResultBtn.onClick.RemoveListener(ShowResult);
         }
     }
 }
