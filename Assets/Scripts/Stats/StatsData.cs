@@ -5,7 +5,6 @@ namespace Stats
 {
     public class StatsData
     {
-        public Action UpdateStats;
         [SerializeField] private int countWin;
 
         public int CountWin

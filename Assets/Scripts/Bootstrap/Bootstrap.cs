@@ -67,6 +67,7 @@ namespace Bootstraps
             enemyDetected.Initialize(playerController.transform);
             enemyAttack.Initialize(playerHealth,enemyDetected);
             enemyController.Initialize(playerController.transform);
+            enemyHealth.Initialize();
             
             shooting.Initialize();
             scope.Initialize(Camera.main);

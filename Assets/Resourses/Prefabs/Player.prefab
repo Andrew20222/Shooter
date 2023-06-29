@@ -435,9 +435,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guns:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7702856705363950488}
+  - {fileID: 889404529415175857}
+  - {fileID: 6272503468295692585}
 --- !u!114 &6620441060012446196
 MonoBehaviour:
   m_ObjectHideFlags: 0

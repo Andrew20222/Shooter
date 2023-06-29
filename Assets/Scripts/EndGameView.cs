@@ -19,7 +19,6 @@ namespace Runners
         public void Initialize(Health player, Health enemy)
         {
             _player = player;
-            _player.GetComponent<PlayerController>();
             _enemy = enemy;
 
             _player.Dead += ShowLosePanel;

@@ -2,7 +2,5 @@ using UnityEngine;
 
 namespace Guns
 {
-    public class Gun : MonoBehaviour
-    {
-    }
+    public class Gun : MonoBehaviour { }
 }

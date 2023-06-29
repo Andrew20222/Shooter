@@ -9,8 +9,6 @@ namespace StorageServices
         {
             var path = BuildPath(key);
             var json = JsonUtility.ToJson(data);
-            Debug.Log(data);
-            Debug.Log(json);
             using (var fileStream = new StreamWriter(path))
             {
                 fileStream.Write(json);

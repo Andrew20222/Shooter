@@ -47,7 +47,7 @@ namespace Inputs
                 _movable.Run();
             }
             
-            if (Input.GetButtonDown("Jump")) 
+            if (Input.GetKeyDown(KeyCode.Space)) 
             {
                 _movable.Jump();
             }
